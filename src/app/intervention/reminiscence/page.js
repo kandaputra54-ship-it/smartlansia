@@ -1,7 +1,20 @@
 "use client";
 import { useState } from "react";
-import { Heart, User, ArrowRight, Activity, MessageCircle, Star, Save, Smile, AlertCircle, } from "lucide-react";
+import {
+  X,
+  Check,
+  Heart,
+  User,
+  ArrowRight,
+  Activity,
+  MessageCircle,
+  Star,
+  Save,
+  Smile,
+  AlertCircle,
+} from "lucide-react";
 import Link from "next/link";
+import { RadialBarChart, RadialBar, ResponsiveContainer, PolarAngleAxis } from "recharts";
 
 export default function InterventionPage() {
   const [step, setStep] = useState("consent");
@@ -16,6 +29,26 @@ export default function InterventionPage() {
   const [formB, setFormB] = useState({});
   const [evaluasi, setEvaluasi] = useState([]);
   const [showValidation, setShowValidation] = useState(false);
+
+  const indicators = [
+    "Tampak senang saat mengingat pasangan",
+    "Tersenyum saat bercerita",
+    "Menunjukkan kedekatan emosional",
+    "Komunikasi pasangan meningkat",
+    "Tampak nyaman dengan pasangan",
+  ];
+
+  // Hitung jumlah jawaban "Ya"
+  const totalYa = Object.values(formB).filter((v) => v === "Ya").length;
+  const totalQuestions = indicators.length;
+
+  // Fungsi status berdasarkan hasil
+  const getStatus = () => {
+    const percentage = (totalYa / totalQuestions) * 100;
+    if (percentage >= 80) return { label: "Sangat Baik", color: "#ef4444" };
+    if (percentage >= 50) return { label: "Cukup Baik", color: "#f59e0b" };
+    return { label: "Perlu Peningkatan", color: "#737373" };
+  };
 
   const sendToWhatsApp = () => {
     const phone = "6285717494954";
@@ -486,75 +519,92 @@ export default function InterventionPage() {
   }
 
   // Result Summary
+  // --- RESULT SUMMARY ---
   return (
-    <div className="min-h-screen bg-[#F8F9FA] flex items-center justify-center p-4 sm:p-6 font-sans">
-      <div className="max-w-md w-full bg-white rounded-[2.5rem] sm:rounded-[3rem] shadow-[0_20px_50px_rgba(0,0,0,0.05)] p-8 sm:p-12 border border-neutral-100 relative overflow-hidden text-center">
-        {/* Decorative Gradient Background */}
-        <div className="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-red-500 via-red-600 to-orange-500" />
+    <div className="min-h-screen bg-neutral-50 flex items-center justify-center p-6">
+      <div className="max-w-md w-full">
+        {step === "result" && (
+          <div className="animate-in fade-in zoom-in-95 duration-500 space-y-6">
+            <div className="bg-white rounded-3xl border border-neutral-100 shadow-lg overflow-hidden text-center">
+              {/* Header Grafik */}
+              <div className="bg-neutral-900 pt-10 pb-8 px-8 flex flex-col items-center gap-5">
+                <div className="w-40 h-40 relative">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <RadialBarChart
+                      cx="50%"
+                      cy="50%"
+                      innerRadius="75%"
+                      outerRadius="100%"
+                      barSize={12}
+                      data={[{ value: (totalYa / totalQuestions) * 100 }]}
+                      startAngle={90}
+                      endAngle={-270}
+                    >
+                      <PolarAngleAxis
+                        type="number"
+                        domain={[0, 100]}
+                        tick={false}
+                      />
+                      <RadialBar
+                        background={{ fill: "#333" }}
+                        dataKey="value"
+                        cornerRadius={10}
+                        fill="#ef4444"
+                      />
+                    </RadialBarChart>
+                  </ResponsiveContainer>
+                  <div className="absolute inset-0 flex items-center justify-center text-4xl font-bold text-white">
+                    {totalYa}/{totalQuestions}
+                  </div>
+                </div>
+                <h2 className="text-2xl font-bold text-white tracking-tight">
+                  {getStatus().label}
+                </h2>
+              </div>
 
-        <div className="relative z-10">
-          {/* Icon Header - Scaled for mobile */}
-          <div className="w-16 h-16 sm:w-20 sm:h-20 bg-red-600 rounded-2xl sm:rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-red-100">
-            <Smile className="w-8 h-8 sm:w-10 sm:h-10 text-white" />
-          </div>
-
-          <h2 className="text-2xl sm:text-3xl font-black text-neutral-900 mb-3 tracking-tighter uppercase italic">
-            Sesi Selesai
-          </h2>
-
-          <p className="text-neutral-500 text-xs sm:text-sm font-medium leading-relaxed mb-8 px-2">
-            Terima kasih telah berbagi kenangan. Laporan Anda siap dikirim ke
-            WhatsApp.
-          </p>
-
-          {/* Summary Card - List format mobile friendly */}
-          <div className="bg-neutral-50 rounded-2xl sm:rounded-[2rem] p-5 sm:p-6 border border-neutral-100 mb-8 text-left">
-            <div className="flex items-center gap-2 mb-4">
-              <Activity className="w-3.5 h-3.5 text-red-600" />
-              <p className="text-[9px] sm:text-[10px] font-black text-neutral-400 uppercase tracking-widest">
-                Hasil Evaluasi
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 gap-2">
-              {evaluasi.length > 0 ? (
-                evaluasi.map((ev) => (
+              {/* List Indikator */}
+              <div className="p-8 space-y-3">
+                {indicators.map((ind, i) => (
                   <div
-                    key={ev}
-                    className="flex items-center gap-3 bg-white p-3 rounded-xl border border-neutral-100"
+                    key={i}
+                    className="flex items-center gap-3 text-sm text-left"
                   >
-                    <div className="w-1.5 h-1.5 rounded-full bg-green-500 shrink-0" />
-                    <span className="text-[11px] sm:text-xs font-bold text-neutral-700 leading-none">
-                      {ev}
+                    {formB[i] === "Ya" ? (
+                      <Check className="w-4 h-4 text-green-500" />
+                    ) : (
+                      <X className="w-4 h-4 text-neutral-300" />
+                    )}
+                    <span
+                      className={
+                        formB[i] === "Ya"
+                          ? "text-neutral-900 font-medium"
+                          : "text-neutral-400"
+                      }
+                    >
+                      {ind}
                     </span>
                   </div>
-                ))
-              ) : (
-                <p className="text-xs text-neutral-400 italic text-center py-2">
-                  Tidak ada data evaluasi
-                </p>
-              )}
+                ))}
+              </div>
             </div>
-          </div>
 
-          {/* Action Buttons - Full width for thumb reach */}
-          <div className="space-y-3">
+            {/* Tombol Aksi */}
             <button
               onClick={sendToWhatsApp}
-              className="flex items-center justify-center gap-3 w-full py-4 sm:py-5 bg-green-600 text-white rounded-2xl font-bold hover:bg-green-700 active:scale-[0.97] transition-all shadow-md"
+              className="w-full py-5 bg-red-600 text-white rounded-2xl font-bold text-[10px] uppercase tracking-widest flex items-center justify-center gap-2 hover:bg-red-700 transition-all active:scale-95"
             >
-              <MessageCircle className="w-5 h-5 text-white" />
-              <span className="text-sm sm:text-base">Kirim ke WhatsApp</span>
+              <MessageCircle className="w-4 h-4" /> Kirim Laporan ke Tenaga
+              Kesehatan
             </button>
 
             <Link
               href="/"
-              className="block w-full py-2 text-[10px] font-black text-neutral-400 uppercase tracking-widest hover:text-neutral-800 transition-colors"
+              className="block text-center text-[10px] font-bold text-neutral-400 uppercase tracking-widest hover:text-neutral-900"
             >
               Kembali ke Dashboard
             </Link>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );
