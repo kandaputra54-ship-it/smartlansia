@@ -3,6 +3,11 @@ import { Video, Phone, MessageCircle, Clock } from "lucide-react";
 import Image from "next/image";
 
 export default function TeleNursing() {
+  // Pesan profesional untuk konsultasi
+  const message = "Halo, saya ingin melakukan konsultasi privat mengenai kesehatan seksualitas melalui layanan TeleNursing. Apakah ada tenaga medis yang tersedia?";
+  const phone = "6285717494954";
+  const whatsappUrl = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+
   return (
     <section id="telenursing" className="py-24 bg-white relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 relative z-10">
@@ -20,10 +25,9 @@ export default function TeleNursing() {
           </p>
         </div>
 
-        {/* Support Card - Softer Black (Zinc 900) */}
+        {/* Support Card */}
         <div className="relative bg-zinc-900 p-10 md:p-20 overflow-hidden rounded-[2.5rem] shadow-2xl">
           
-          {/* Background Image */}
           <div className="absolute inset-0 z-0">
             <Image 
               src="/konsultasi.jpeg" 
@@ -31,7 +35,6 @@ export default function TeleNursing() {
               fill 
               className="object-cover opacity-50" 
             />
-            {/* Gradient matching Zinc 900 */}
             <div className="absolute inset-0 bg-gradient-to-r from-zinc-900 via-zinc-900/90 to-transparent"></div>
           </div>
           
@@ -39,30 +42,26 @@ export default function TeleNursing() {
             <div className="flex-1 text-center lg:text-left">
               <div className="inline-flex items-center gap-3 px-4 py-2 bg-red-600 text-white rounded-full mb-8 shadow-lg shadow-red-600/20">
                 <Clock className="w-4 h-4" />
-                <span className="text-[10px] font-black uppercase tracking-widest">Daily Health Support</span>
+                <span className="text-[10px] font-black uppercase tracking-widest">Private & Secure Support</span>
               </div>
               
               <h3 className="text-4xl md:text-6xl font-black text-white mb-6 uppercase tracking-tighter leading-[0.9]">
-                Konsultasi <br /> <span className="text-red-600">Kapan Saja.</span>
+                Konsultasi <br /> <span className="text-red-600">Secara Privat.</span>
               </h3>
               
               <p className="text-white/70 text-sm md:text-base max-w-xl mx-auto lg:mx-0 font-medium leading-relaxed mb-10">
-                Hubungi perawat profesional kami melalui berbagai saluran komunikasi instan untuk kebutuhan kesehatan harian Anda.
+                Layanan pendampingan kesehatan khusus bagi Anda yang membutuhkan privasi tinggi. Terhubung langsung dengan tenaga medis profesional.
               </p>
 
-              {/* Integrated Channels */}
+              {/* Integrated Channels - Penjelasan bahwa ini via WhatsApp */}
               <div className="flex flex-wrap justify-center lg:justify-start gap-8 mb-10 border-t border-white/10 pt-8">
-                <div className="flex items-center gap-3 text-white">
-                  <Video className="w-5 h-5 text-red-500" />
-                  <span className="text-[11px] font-black uppercase tracking-widest">Video Call</span>
-                </div>
-                <div className="flex items-center gap-3 text-white">
-                  <Phone className="w-5 h-5 text-red-500" />
-                  <span className="text-[11px] font-black uppercase tracking-widest">Voice Call</span>
-                </div>
-                <div className="flex items-center gap-3 text-white">
+                <div className="flex items-center gap-3 text-white/50">
                   <MessageCircle className="w-5 h-5 text-red-500" />
-                  <span className="text-[11px] font-black uppercase tracking-widest">Live Chat</span>
+                  <span className="text-[11px] font-black uppercase tracking-widest">Chat Consultation</span>
+                </div>
+                <div className="flex items-center gap-3 text-white/50">
+                  <Video className="w-5 h-5 text-red-500" />
+                  <span className="text-[11px] font-black uppercase tracking-widest">Video Call (via WA)</span>
                 </div>
               </div>
             </div>
@@ -70,12 +69,13 @@ export default function TeleNursing() {
             {/* Action Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 w-full lg:w-auto">
               <a
-                href="https://wa.me/6285717494954"
+                href={whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="bg-white text-zinc-900 px-10 py-5 font-black text-[10px] uppercase tracking-[0.2em] hover:bg-red-600 hover:text-white rounded-xl transition-all text-center shadow-xl shadow-zinc-950/30"
               >
-                Hubungi Kami
+                Mulai Konsultasi Privat
               </a>
-           
             </div>
           </div>
         </div>
