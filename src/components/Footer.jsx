@@ -3,12 +3,12 @@ import { FaInstagram, FaYoutube, FaXTwitter } from "react-icons/fa6";
 import Link from "next/link";
 
 const layananLinks = [
-  { name: "Screening", href: "/screening" },
-  { name: "Reminiscence", href: "/intervention/reminiscence" },
-  { name: "Latihan Kegel", href: "/intervention/kegel" },
-  { name: "Healing Touch", href: "/intervention/healing-touch" },
-  { name: "Komunikasi", href: "/intervention/communication" },
-  { name: "Tracking", href: "/tracking" },
+  { name: "Screening", href: "#screening" },
+  { name: "Reminiscence", href: "#intervensi" },
+  { name: "Latihan Kegel", href: "#intervensi" },
+  { name: "Healing Touch", href: "#intervensi" },
+  { name: "Komunikasi", href: "#intervensi" },
+  { name: "Tracking", href: "#tracking" },
 ];
 
 export default function Footer() {
