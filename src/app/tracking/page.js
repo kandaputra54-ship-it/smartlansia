@@ -94,7 +94,7 @@ export default function TrackingPage() {
         {step === "identity" && (
           <div className="bg-white rounded-3xl shadow-xl border border-neutral-100 p-12 animate-in fade-in slide-in-from-bottom-4 duration-700">
             <div className="flex items-center gap-4 mb-10">
-              <div className="p-3 bg-neutral-900 rounded-2xl">
+              <div className="p-3 bg-amber-700 rounded-2xl">
                 <User className="w-6 h-6 text-white" />
               </div>
               <div>
@@ -156,7 +156,7 @@ export default function TrackingPage() {
             <button
               disabled={!identity.name || !identity.age || !identity.gender}
               onClick={() => setStep("questions")}
-              className="w-full mt-12 py-5 bg-black text-white rounded-2xl font-bold hover:bg-neutral-800 disabled:bg-neutral-100 disabled:text-neutral-300 transition-all shadow-xl shadow-black/10 flex items-center justify-center gap-2"
+              className="w-full mt-12 py-5 bg-amber-600 text-white rounded-2xl font-bold hover:bg-amber-700 disabled:bg-neutral-100 disabled:text-neutral-300 transition-all shadow-xl shadow-black/10 flex items-center justify-center gap-2"
             >
               Mulai Kuesioner <ChevronRight className="w-4 h-4" />
             </button>
@@ -167,7 +167,7 @@ export default function TrackingPage() {
         {step === "questions" && (
           <div className="bg-white rounded-3xl shadow-xl border border-neutral-100 p-12 animate-in fade-in slide-in-from-right-4 duration-500">
             <div className="flex items-center gap-4 mb-10">
-              <div className="p-3 bg-neutral-900 rounded-2xl">
+              <div className="p-3 bg-amber-700 rounded-2xl">
                 <LineChart className="w-6 h-6 text-white" />
               </div>
               <div>
@@ -197,7 +197,7 @@ export default function TrackingPage() {
                         className={`flex-1 py-3 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all border
                         ${
                           results[i] === opt
-                            ? "bg-black border-black text-white"
+                            ? "bg-amber-600 border-amber-600 text-white"
                             : "bg-neutral-50 border-neutral-100 text-neutral-400 hover:bg-neutral-100"
                         }`}
                       >
@@ -212,7 +212,7 @@ export default function TrackingPage() {
             <button
               disabled={!isTrackingComplete}
               onClick={() => setStep("results")}
-              className="w-full mt-10 py-5 bg-black text-white rounded-2xl font-bold hover:bg-neutral-800 disabled:bg-neutral-100 disabled:text-neutral-300 transition-all shadow-xl shadow-black/10"
+              className="w-full mt-10 py-5 bg-amber-600 text-white rounded-2xl font-bold hover:bg-amber-700 disabled:bg-neutral-100 disabled:text-neutral-300 transition-all shadow-xl shadow-black/10"
             >
               Lihat Hasil Akhir
             </button>
@@ -339,7 +339,7 @@ export default function TrackingPage() {
             <div className="space-y-3">
               <button
                 onClick={sendToWhatsApp}
-                className="w-full py-5 bg-red-600 text-white rounded-2xl font-bold text-xs uppercase tracking-[0.15em] flex items-center justify-center gap-2.5 hover:bg-red-700 active:scale-[0.98] transition-all shadow-lg shadow-red-200"
+                className="w-full py-5 bg-amber-600 text-white rounded-2xl font-bold text-xs uppercase tracking-[0.15em] flex items-center justify-center gap-2.5 hover:bg-amber-700 active:scale-[0.98] transition-all shadow-lg shadow-amber-200"
               >
                 <MessageCircle className="w-4 h-4" />
                 Kirim ke Tenaga Kesehatan

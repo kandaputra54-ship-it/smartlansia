@@ -4,7 +4,6 @@ import { Menu, X, Heart } from "lucide-react";
 import Link from "next/link";
 
 const navLinks = [
-  ,
   { label: "Screening", href: "#screening" },
   { label: "Intervensi", href: "#intervensi" },
   { label: "Tele-Nursing", href: "#telenursing" },
@@ -15,7 +14,7 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <nav className="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-neutral-100">
+    <nav className="fixed top-0 w-full z-50 bg-orange-50/80 backdrop-blur-md border-b border-amber-100">
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         
         {/* Logo Section */}
@@ -24,8 +23,8 @@ export default function Navbar() {
             <Heart className="w-4 h-4 text-white" fill="currentColor" />
           </div>
           <div className="flex items-center tracking-tighter">
-            <span className="font-black text-xl text-neutral-900">SMART</span>
-            <span className="font-bold text-xl text-neutral-400">LANSIA</span>
+            <span className="font-black text-xl text-amber-900">SMART</span>
+            <span className="font-bold text-xl text-amber-400">LANSIA</span>
           </div>
         </div>
 
@@ -35,7 +34,7 @@ export default function Navbar() {
             <li key={link.label}>
               <a 
                 href={link.href} 
-                className="text-xs font-bold uppercase tracking-widest text-neutral-500 hover:text-red-600 transition-colors duration-200"
+                className="text-xs font-bold uppercase tracking-widest text-amber-700 hover:text-red-600 transition-colors duration-200"
               >
                 {link.label}
               </a>
@@ -44,7 +43,7 @@ export default function Navbar() {
           <li>
             <Link 
               href="#screening" 
-              className="bg-neutral-900 text-white text-[10px] font-black uppercase tracking-[0.15em] px-6 py-3 rounded-xl hover:bg-red-600 transition-all duration-300 shadow-lg shadow-neutral-200"
+              className="bg-amber-600 text-white text-[10px] font-black uppercase tracking-[0.15em] px-6 py-3 rounded-xl hover:bg-red-600 transition-all duration-300 shadow-lg shadow-amber-200"
             >
               Mulai Screening
             </Link>
@@ -53,7 +52,7 @@ export default function Navbar() {
 
         {/* Mobile Toggle */}
         <button 
-          className="md:hidden text-neutral-900" 
+          className="md:hidden text-amber-900" 
           onClick={() => setOpen(!open)}
         >
           {open ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -62,13 +61,13 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       {open && (
-        <div className="md:hidden bg-white border-t border-neutral-100 px-6 py-8 flex flex-col gap-6 animate-in slide-in-from-top duration-300">
+        <div className="md:hidden bg-orange-50 border-t border-amber-100 px-6 py-8 flex flex-col gap-6 animate-in slide-in-from-top duration-300">
           {navLinks.map((link) => (
             <a 
               key={link.label} 
               href={link.href} 
               onClick={() => setOpen(false)} 
-              className="text-sm font-bold uppercase tracking-widest text-neutral-600"
+              className="text-sm font-bold uppercase tracking-widest text-amber-800"
             >
               {link.label}
             </a>

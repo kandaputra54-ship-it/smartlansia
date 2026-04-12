@@ -8,7 +8,6 @@ import {
   ArrowRight,
 } from "lucide-react";
 
-// Data pills tetap sama
 const pills = [
   { icon: ShieldCheck, label: "Screening" },
   { icon: Smartphone, label: "Mobile Intervention" },
@@ -21,12 +20,12 @@ export default function Hero() {
   return (
     <section
       id="beranda"
-      className="relative min-h-screen flex items-center pt-20 overflow-hidden bg-black"
+      className="relative min-h-screen flex items-center pt-20 overflow-hidden bg-[#020617]"
       style={{ fontFamily: "'DM Sans', sans-serif" }}
     >
-      {/* 1. Background Image */}
+      {/* 1. Background Image dengan Opacity Rendah */}
       <div
-        className="absolute inset-0 z-0"
+        className="absolute inset-0 z-0 opacity-40"
         style={{
           backgroundImage: "url('/hero-bg.jpeg')",
           backgroundSize: "cover",
@@ -34,102 +33,68 @@ export default function Hero() {
         }}
       />
 
-      {/* 2. Base Overlay (biar gelap merata dikit) */}
-      <div className="absolute inset-0 z-10 bg-black/50" />
-
-      {/* 3. Gradient Fokus ke kiri (lebih smooth, nggak berat di kanan) */}
-      <div
-        className="absolute inset-0 z-20"
+      {/* 2. Gradient Overlay untuk Kedalaman Visual */}
+      <div 
+        className="absolute inset-0 z-10"
         style={{
-          background:
-            "linear-gradient(90deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.6) 35%, rgba(0,0,0,0.3) 65%, rgba(0,0,0,0) 100%)",
+          background: "linear-gradient(to right, #020617 0%, #020617 40%, transparent 100%)"
         }}
       />
 
       <div className="relative z-20 max-w-7xl mx-auto px-6 py-20 w-full">
-        <div style={{ maxWidth: 700 }}>
-          {" "}
-          {/* Sedikit dilebarkan agar teks lebih lega */}
-          {/* Label Atas - Warna Netral dengan Aksen Merah kecil */}
-          <div className="flex items-center gap-3 mb-5">
-            <div className="h-px w-6 bg-red-600"></div>
-            <span
-              className="block text-xs font-semibold uppercase"
-              style={{ color: "rgba(255,255,255,0.5)", letterSpacing: "0.2em" }}
-            >
-              Platform Kesehatan Lansia
+        <div className="max-w-[720px]">
+          
+          {/* Label Atas - Amber Accent */}
+          <div className="flex items-center gap-3 mb-6">
+            <div className="h-[2px] w-8 bg-red-600"></div>
+            <span className="text-xs font-bold uppercase tracking-[0.3em] text-amber-500">
+              Health Tech Platform
             </span>
           </div>
-          {/* Heading SMARTLANSIA - Profesional & Bold */}
+
+          {/* Heading - Kontras Tinggi */}
           <h1
-            className="font-black mb-6 tracking-tighter leading-none uppercase text-white"
-            style={{ fontSize: "clamp(3rem, 8vw, 6rem)" }} // Responsif dan kuat
+            className="font-black mb-8 tracking-tighter leading-[0.9] uppercase text-white"
+            style={{ fontSize: "clamp(3.5rem, 9vw, 6.5rem)" }}
           >
-            SMART<span style={{ color: "rgba(255,255,255,0.4)" }}>LANSIA</span>
+            SMART<span className="text-amber-400 block sm:inline">LANSIA</span>
           </h1>
-          {/* Deskripsi - Warna Abu Netral (Vibe Hijau Hilang) */}
-          <p
-            className="mb-10 font-medium"
-            style={{
-              color: "#A3A3A3", // Neutral gray
-              fontSize: "clamp(1rem, 1.5vw, 1.125rem)",
-              lineHeight: 1.7,
-              maxWidth: 480,
-            }}
-          >
-            Platform digital terintegrasi untuk memantau, mendampingi, dan
-            meningkatkan Seksulalitas serta Kesehatan Lansia dengan pendekatan
-            profesional .
+
+          {/* Deskripsi - Soft Gray */}
+          <p className="mb-12 text-slate-300 font-medium leading-relaxed max-w-[520px]"
+             style={{ fontSize: "clamp(1rem, 1.2vw, 1.25rem)" }}>
+            Solusi digital profesional untuk memantau kesehatan dan seksualitas lansia secara terintegrasi dan aman.
           </p>
-          {/* Pills - Warna Abu Netral */}
-          <div className="flex flex-wrap gap-2.5 mb-12">
+
+          {/* Pills - High Visibility */}
+          <div className="flex flex-wrap gap-3 mb-14">
             {pills.map((p) => {
               const Icon = p.icon;
               return (
                 <span
                   key={p.label}
-                  className="flex items-center gap-2 text-xs font-semibold px-4 py-2 rounded-full backdrop-blur-sm"
-                  style={{
-                    border: "1px solid rgba(255,255,255,0.1)", // Border putih tipis
-                    color: "rgba(255,255,255,0.6)", // Teks abu terang
-                    backgroundColor: "rgba(255,255,255,0.03)", // Background sangat transparan
-                  }}
+                  className="flex items-center gap-2.5 text-[11px] font-bold px-5 py-2.5 rounded-full bg-white text-slate-950 shadow-xl shadow-black/20 uppercase tracking-wider transition-transform hover:scale-105"
                 >
-                  <Icon className="w-4 h-4 text-red-600" />{" "}
-                  {/* Ikon jadi Merah */}
+                  <Icon className="w-4 h-4 text-red-600" />
                   {p.label}
                 </span>
               );
             })}
           </div>
-          {/* Tombol Aksi - Merah dan Putih/Outline */}
-          <div className="flex flex-col sm:flex-row gap-4">
+
+          {/* Action Buttons */}
+          <div className="flex flex-col sm:flex-row gap-5">
             <a
               href="#screening"
-              className="inline-flex items-center justify-center gap-2.5 font-bold text-sm px-8 py-4 rounded-xl transition-all shadow-lg uppercase tracking-wider"
-              style={{
-                background: "#DC2626", // Merah solid profesional
-                color: "#ffffff",
-              }}
+              className="group inline-flex items-center justify-center gap-3 font-black text-xs px-10 py-5 rounded-2xl bg-red-600 text-white shadow-2xl shadow-red-900/20 hover:bg-red-700 transition-all uppercase tracking-widest"
             >
               Mulai Screening
-              <ArrowRight className="w-4 h-4" />
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </a>
 
             <a
               href="#telenursing"
-              className="inline-flex items-center justify-center gap-2.5 font-semibold text-sm px-8 py-4 rounded-xl transition-all uppercase tracking-wider"
-              style={{
-                border: "1px solid rgba(255,255,255,0.2)", // Putih transparan outline
-                color: "#ffffff",
-                backgroundColor: "transparent",
-              }}
-              onMouseOver={(e) => {
-                e.target.style.background = "rgba(255,255,255,0.05)";
-              }}
-              onMouseOut={(e) => {
-                e.target.style.background = "transparent";
-              }}
+              className="inline-flex items-center justify-center gap-3 font-bold text-xs px-10 py-5 rounded-2xl border-2 border-white/20 text-white hover:bg-white/10 transition-all uppercase tracking-widest backdrop-blur-md"
             >
               Hubungi Perawat
             </a>

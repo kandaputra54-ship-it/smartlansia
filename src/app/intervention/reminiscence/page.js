@@ -161,9 +161,9 @@ export default function InterventionPage() {
           </p>
           <button
             onClick={() => setStep("identity")}
-            className="w-full py-5 bg-black text-white rounded-2xl font-bold hover:bg-neutral-800 transition-all flex items-center justify-center gap-3 shadow-xl"
+            className="w-full py-5 bg-amber-600 text-white rounded-2xl font-bold hover:bg-amber-700 transition-colors flex items-center justify-center gap-3 shadow-md"
           >
-            Mulai Sesi Terapi <ArrowRight className="w-5 h-5 text-red-500" />
+            Mulai Sesi Terapi 
           </button>
           <Link
             href="/"
@@ -181,7 +181,7 @@ export default function InterventionPage() {
       <div className="min-h-screen bg-neutral-50 py-16 px-6">
         <div className="max-w-lg mx-auto bg-white rounded-[2.5rem] shadow-sm border border-neutral-200 p-10 md:p-12">
           <div className="flex flex-col items-center text-center mb-10">
-            <div className="p-4 bg-neutral-900 rounded-2xl mb-4">
+            <div className="p-4 bg-amber-600 rounded-2xl mb-4">
               <User className="w-6 h-6 text-white" />
             </div>
             <h2 className="text-2xl font-black text-neutral-900 tracking-tight">
@@ -268,7 +268,7 @@ export default function InterventionPage() {
               !identity.pasangan
             }
             onClick={() => setStep("form")}
-            className="w-full mt-10 py-5 bg-black text-white rounded-2xl font-bold hover:bg-neutral-800 disabled:bg-neutral-100 disabled:text-neutral-300 transition-all shadow-lg active:scale-[0.98]"
+            className="w-full mt-10 py-5 bg-amber-600 text-white rounded-2xl font-bold hover:bg-amber-700 disabled:bg-neutral-100 disabled:text-neutral-300 transition-all shadow-lg active:scale-[0.98]"
           >
             Lanjutkan Terapi
           </button>
@@ -316,7 +316,7 @@ export default function InterventionPage() {
           <div
             className={`bg-white rounded-3xl border overflow-hidden shadow-sm ${showValidation && !isFormAComplete ? "border-red-300" : "border-neutral-200"}`}
           >
-            <div className="bg-black px-8 py-5 flex items-center justify-between">
+            <div className="bg-amber-700 px-8 py-5 flex items-center justify-between">
               <h2 className="text-xs font-black uppercase tracking-widest text-white">
                 A. Kenangan Hubungan Pasangan
               </h2>
@@ -371,7 +371,7 @@ export default function InterventionPage() {
           <div
             className={`bg-white rounded-3xl border overflow-hidden shadow-sm ${showValidation && !isFormBComplete ? "border-red-300" : "border-neutral-200"}`}
           >
-            <div className="bg-neutral-900 px-8 py-5 flex items-center justify-between">
+            <div className="bg-amber-700 px-8 py-5 flex items-center justify-between">
               <h2 className="text-xs font-black uppercase tracking-widest text-white">
                 B. Respon Emosional
               </h2>
@@ -383,7 +383,7 @@ export default function InterventionPage() {
                 )}
                 {isFormBComplete && (
                   <span className="text-[10px] font-black text-green-400 uppercase tracking-widest">
-                    ✓ Lengkap
+                     Lengkap
                   </span>
                 )}
                 <Activity className="w-5 h-5 text-red-500" />
@@ -400,7 +400,7 @@ export default function InterventionPage() {
                 <div
                   key={i}
                   className={`flex flex-col gap-3 p-4 rounded-2xl border transition-all
-                  ${showValidation && (formB[i] === undefined || formB[i] === "") ? "bg-red-50 border-red-200" : "bg-neutral-50 border-neutral-100"}`}
+                  ${showValidation && (formB[i] === undefined || formB[i] === "") ? "bg-amber-50 border-amber-200" : "bg-neutral-50 border-neutral-100"}`}
                 >
                   <p className="text-xs font-bold text-neutral-800">
                     {q}
@@ -430,8 +430,8 @@ export default function InterventionPage() {
           <div
             className={`bg-white rounded-3xl border overflow-hidden shadow-sm ${showValidation && !isEvaluasiComplete ? "border-red-300" : "border-neutral-200"}`}
           >
-            <div className="bg-neutral-100 px-8 py-5 flex items-center justify-between border-b border-neutral-200">
-              <h2 className="text-xs font-black uppercase tracking-widest text-neutral-900">
+            <div className="bg-amber-700 px-8 py-5 flex items-center justify-between border-b border-neutral-200">
+              <h2 className="text-xs font-black uppercase tracking-widest text-white">
                 C. Evaluasi Terapi
               </h2>
               <div className="flex items-center gap-2">
@@ -442,7 +442,7 @@ export default function InterventionPage() {
                 )}
                 {isEvaluasiComplete && (
                   <span className="text-[10px] font-black text-green-600 uppercase tracking-widest">
-                    ✓ Lengkap
+                    Lengkap
                   </span>
                 )}
                 <Star className="w-5 h-5 text-red-600" />
@@ -454,6 +454,7 @@ export default function InterventionPage() {
                 "Komunikasi pasangan meningkat",
                 "Keintiman meningkat",
                 "Kebutuhan seksualitas meningkat",
+                "Tidak ada perubahan",
               ].map((item) => (
                 <button
                   key={item}
@@ -505,7 +506,7 @@ export default function InterventionPage() {
             className={`w-full py-6 rounded-[2rem] font-black uppercase tracking-[0.2em] shadow-2xl transition-all
               ${
                 isAllComplete
-                  ? "bg-black text-white hover:bg-neutral-800"
+                  ? "bg-amber-600 text-white hover:bg-amber-700"
                   : "bg-neutral-200 text-neutral-400 cursor-not-allowed"
               }`}
           >
@@ -527,7 +528,7 @@ export default function InterventionPage() {
           <div className="animate-in fade-in zoom-in-95 duration-500 space-y-6">
             <div className="bg-white rounded-3xl border border-neutral-100 shadow-lg overflow-hidden text-center">
               {/* Header Grafik */}
-              <div className="bg-neutral-900 pt-10 pb-8 px-8 flex flex-col items-center gap-5">
+              <div className="bg-amber-700 pt-10 pb-8 px-8 flex flex-col items-center gap-5">
                 <div className="w-40 h-40 relative">
                   <ResponsiveContainer width="100%" height="100%">
                     <RadialBarChart
@@ -549,8 +550,8 @@ export default function InterventionPage() {
                         background={{ fill: "#333" }}
                         dataKey="value"
                         cornerRadius={10}
-                        fill="#ef4444"
-                      />
+                        fill="#358e05"
+                      />Evaluasi Terapi
                     </RadialBarChart>
                   </ResponsiveContainer>
                   <div className="absolute inset-0 flex items-center justify-center text-4xl font-bold text-white">
@@ -591,7 +592,7 @@ export default function InterventionPage() {
             {/* Tombol Aksi */}
             <button
               onClick={sendToWhatsApp}
-              className="w-full py-5 bg-red-600 text-white rounded-2xl font-bold text-[10px] uppercase tracking-widest flex items-center justify-center gap-2 hover:bg-red-700 transition-all active:scale-95"
+              className="w-full py-5 bg-amber-600 text-white rounded-2xl font-bold text-[10px] uppercase tracking-widest flex items-center justify-center gap-2 hover:bg-red-700 transition-all active:scale-95"
             >
               <MessageCircle className="w-4 h-4" /> Kirim Laporan ke Tenaga
               Kesehatan

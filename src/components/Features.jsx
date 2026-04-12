@@ -1,5 +1,11 @@
 "use client";
-import { ShieldCheck, Smartphone, Headphones, Wifi, BarChart2 } from "lucide-react";
+import {
+  ShieldCheck,
+  Smartphone,
+  Headphones,
+  Wifi,
+  BarChart2,
+} from "lucide-react";
 
 const features = [
   {
@@ -37,28 +43,40 @@ const features = [
 function FeatureCard({ f }) {
   const Icon = f.icon;
 
-
-     const handleClick = () => {
+  const handleClick = () => {
     switch (f.letter) {
       case "S":
-        document.getElementById("screening")?.scrollIntoView({ behavior: "smooth" });
+        document
+          .getElementById("screening")
+          ?.scrollIntoView({ behavior: "smooth" });
         break;
       case "M":
-        document.getElementById("intervensi")?.scrollIntoView({ behavior: "smooth" });
+        document
+          .getElementById("intervensi")
+          ?.scrollIntoView({ behavior: "smooth" });
         break;
       case "A":
-        document.getElementById("beranda")?.scrollIntoView({ behavior: "smooth" });
+        document
+          .getElementById("beranda")
+          ?.scrollIntoView({ behavior: "smooth" });
         break;
       case "R":
-        document.getElementById("telenursing")?.scrollIntoView({ behavior: "smooth" });
+        document
+          .getElementById("telenursing")
+          ?.scrollIntoView({ behavior: "smooth" });
         break;
       case "T":
-        document.getElementById("tracking")?.scrollIntoView({ behavior: "smooth" });
+        document
+          .getElementById("tracking")
+          ?.scrollIntoView({ behavior: "smooth" });
         return; // tidak ngapa-ngapain
     }
   };
   return (
-    <div onClick={handleClick}  className="group relative bg-white p-7 transition-all duration-300 hover:bg-neutral-50">
+    <div
+      onClick={handleClick}
+      className="group relative bg-white p-7 transition-all duration-300 hover:bg-neutral-50"
+    >
       <div className="flex items-start justify-between mb-5">
         <span
           className="font-bold"
@@ -107,9 +125,11 @@ const wrapperStyle = {
 
 export default function Features() {
   return (
-    <section className="py-24 bg-white" style={{ fontFamily: "'DM Sans', sans-serif" }}>
+    <section
+      className="py-24 bg-white"
+      style={{ fontFamily: "'DM Sans', sans-serif" }}
+    >
       <div className="max-w-6xl mx-auto px-6">
-
         {/* Header */}
         <div className="max-w-xl mb-16">
           <span
@@ -117,16 +137,31 @@ export default function Features() {
             style={{ color: "#b91c1c" }} // Teks header jadi merah
           >
             {/* Titik indikator merah */}
-            <span style={{ display: "inline-block", width: 6, height: 6, borderRadius: "50%", background: "#b91c1c" }} />
+            <span
+              style={{
+                display: "inline-block",
+                width: 6,
+                height: 6,
+                borderRadius: "50%",
+                background: "#b91c1c",
+              }}
+            />
             Fitur Unggulan
           </span>
           <h2
-            className="font-bold leading-tight mt-2"
-            style={{ fontSize: "clamp(2rem, 4vw, 3rem)", color: "#0f172a", letterSpacing: "-0.02em" }}
+            className="font-black leading-tight mt-2 uppercase tracking-tighter"
+            style={{
+              fontSize: "clamp(2rem, 4vw, 3rem)",
+              color: "#451a03", // amber-950 (Cokelat tua sangat tegas)
+            }}
           >
-            Apa itu <span style={{ color: "#166534" }}>SMART</span>?
+            Apa itu <span style={{ color: "#d97706" }}>SMART</span>?
+            {/* amber-600 (Cokelat oranye cerah) */}
           </h2>
-          <p className="mt-4 leading-relaxed" style={{ color: "#64748b", fontSize: "0.95rem" }}>
+          <p
+            className="mt-4 leading-relaxed"
+            style={{ color: "#64748b", fontSize: "0.95rem" }}
+          >
             Lima pilar layanan digital yang saling terintegrasi untuk menjaga
             kesehatan lansia secara menyeluruh.
           </p>
@@ -151,7 +186,6 @@ export default function Features() {
             <FeatureCard key={f.title} f={f} />
           ))}
         </div>
-
       </div>
     </section>
   );

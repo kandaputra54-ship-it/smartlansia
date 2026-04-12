@@ -13,6 +13,7 @@ import {
   PlayCircle,
   ClipboardCheck,
   Video,
+
 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import {
@@ -21,6 +22,7 @@ import {
   PolarAngleAxis,
   ResponsiveContainer,
 } from "recharts";
+import  Link from "next/link";
 import PdfViewer from "@/components/PdfViewer";
 import VideoViewer from "@/components/VideoViewer";
 
@@ -38,6 +40,7 @@ export default function TrackingPage() {
     "Komunikasi pasangan meningkat",
     "Keintiman meningkat",
     "Kebutuhan seksualitas meningkat",
+    "Tidak ada perubahan",
   ];
 
   const handleIdentity = (e) => {
@@ -67,26 +70,26 @@ export default function TrackingPage() {
     return { label: "Kondisi Optimal", color: "text-green-600" };
   };
 
- const sendToWhatsApp = () => {
-  let message = `*LAPORAN EVALUASI TERAPI & SENAM KEGEL*\n\n`;
-  message += `*PROFIL RESPONDEN*\n`;
-  message += `Nama: ${identity.name}\n`;
-  message += `Usia: ${identity.age} Tahun\n\n`;
-  message += `*HASIL EVALUASI TERAPI*\n`;
-  
-  indicators.forEach((ind, i) => {
-    // Mengganti simbol dengan teks Ya atau Tidak
-    const status = results[i] === "Ya" ? "Ya" : "Tidak";
-    message += `• ${ind}: ${status}\n`;
-  });
+  const sendToWhatsApp = () => {
+    let message = `*LAPORAN EVALUASI TERAPI & SENAM KEGEL*\n\n`;
+    message += `*PROFIL RESPONDEN*\n`;
+    message += `Nama: ${identity.name}\n`;
+    message += `Usia: ${identity.age} Tahun\n\n`;
+    message += `*HASIL EVALUASI TERAPI*\n`;
 
-  message += `\n*KESIMPULAN:* ${getStatus().label.toUpperCase()}`;
-  
-  window.open(
-    `https://wa.me/${phone}?text=${encodeURIComponent(message)}`,
-    "_blank"
-  );
-};
+    indicators.forEach((ind, i) => {
+      // Mengganti simbol dengan teks Ya atau Tidak
+      const status = results[i] === "Ya" ? "Ya" : "Tidak";
+      message += `• ${ind}: ${status}\n`;
+    });
+
+    message += `\n*KESIMPULAN:* ${getStatus().label.toUpperCase()}`;
+
+    window.open(
+      `https://wa.me/${phone}?text=${encodeURIComponent(message)}`,
+      "_blank",
+    );
+  };
 
   return (
     <div className="min-h-screen bg-neutral-50 py-12 px-6">
@@ -102,7 +105,7 @@ export default function TrackingPage() {
         {step === "identity" && (
           <div className="bg-white rounded-3xl shadow-xl border border-neutral-100 p-10 animate-in fade-in slide-in-from-bottom-4 duration-700">
             <div className="flex items-center gap-4 mb-10">
-              <div className="p-3 bg-neutral-900 rounded-2xl">
+              <div className="p-3 bg-amber-700 rounded-2xl">
                 <User className="w-6 h-6 text-white" />
               </div>
               <div>
@@ -147,9 +150,9 @@ export default function TrackingPage() {
             <button
               disabled={!identity.name || !identity.age || !identity.gender}
               onClick={() => setStep("material")}
-              className="w-full mt-10 py-5 bg-black text-white rounded-2xl font-bold hover:bg-neutral-800 disabled:bg-neutral-100 transition-all flex items-center justify-center gap-2"
+              className="w-full mt-10 py-5 bg-amber-600 text-white rounded-2xl font-bold hover:bg-amber-700 disabled:bg-neutral-100 transition-all flex items-center justify-center gap-2"
             >
-              Buka Materi Edukasi <ChevronRight className="w-4 h-4" />
+              Buka Materi Edukasi
             </button>
           </div>
         )}
@@ -159,7 +162,7 @@ export default function TrackingPage() {
           <div className="space-y-6 animate-in fade-in slide-in-from-right-4 duration-500">
             <div className="bg-white rounded-3xl shadow-2xl border border-neutral-100 p-8">
               <div className="text-center mb-10">
-                <div className="w-16 h-16 bg-black rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-xl">
+                <div className="w-16 h-16 bg-amber-700 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-xl">
                   <BookOpen className="w-8 h-8 text-white" />
                 </div>
                 <h2 className="text-2xl font-black text-neutral-900 tracking-tight">
@@ -244,7 +247,7 @@ export default function TrackingPage() {
 
               <button
                 onClick={() => setStep("questions")}
-                className="w-full mt-10 py-6 bg-black text-white rounded-2xl font-black text-xs uppercase tracking-[0.2em] hover:bg-red-600 transition-all duration-300 flex items-center justify-center gap-3 shadow-2xl shadow-neutral-200"
+                className="w-full mt-10 py-6 bg-amber-600 text-white rounded-2xl font-black text-xs uppercase tracking-[0.2em] hover:bg-amber-700 transition-all duration-300 flex items-center justify-center gap-3 shadow-2xl shadow-neutral-200"
               >
                 Mulai Evaluasi Terapi <ChevronRight className="w-5 h-5" />
               </button>
@@ -256,7 +259,7 @@ export default function TrackingPage() {
         {step === "questions" && (
           <div className="bg-white rounded-3xl shadow-xl border border-neutral-100 p-10 animate-in fade-in slide-in-from-right-4 duration-500">
             <div className="flex items-center gap-4 mb-10">
-              <div className="p-3 bg-neutral-900 rounded-2xl">
+              <div className="p-3 bg-amber-700 rounded-2xl">
                 <ClipboardCheck className="w-6 h-6 text-white" />
               </div>
               <div>
@@ -294,7 +297,7 @@ export default function TrackingPage() {
             <button
               disabled={!isTrackingComplete}
               onClick={() => setStep("results")}
-              className="w-full mt-10 py-5 bg-black text-white rounded-2xl font-bold hover:bg-neutral-800 disabled:bg-neutral-100 transition-all"
+              className="w-full mt-10 py-5 bg-amber-600 text-white rounded-2xl font-bold hover:bg-amber-700 disabled:bg-neutral-100 transition-all"
             >
               Selesai & Lihat Hasil
             </button>
@@ -305,7 +308,7 @@ export default function TrackingPage() {
         {step === "results" && (
           <div className="animate-in fade-in zoom-in-95 duration-500 space-y-6">
             <div className="bg-white rounded-3xl border border-neutral-100 shadow-lg overflow-hidden text-center">
-              <div className="bg-neutral-900 pt-10 pb-8 px-8 flex flex-col items-center gap-5">
+              <div className="bg-amber-700 pt-10 pb-8 px-8 flex flex-col items-center gap-5">
                 <div className="w-40 h-40 relative">
                   <ResponsiveContainer width="100%" height="100%">
                     <RadialBarChart
@@ -314,7 +317,7 @@ export default function TrackingPage() {
                       innerRadius="75%"
                       outerRadius="100%"
                       barSize={12}
-                      data={[{ value: (totalYa / 4) * 100 }]}
+                      data={[{ value: (totalYa / 5) * 100 }]}
                       startAngle={90}
                       endAngle={-270}
                     >
@@ -327,12 +330,12 @@ export default function TrackingPage() {
                         background={{ fill: "#333" }}
                         dataKey="value"
                         cornerRadius={10}
-                        fill="#ef4444"
+                        fill="#358e05"
                       />
                     </RadialBarChart>
                   </ResponsiveContainer>
                   <div className="absolute inset-0 flex items-center justify-center text-4xl font-bold text-white">
-                    {totalYa}/4
+                    {totalYa}/5
                   </div>
                 </div>
                 <h2 className="text-2xl font-bold text-white tracking-tight">
@@ -365,11 +368,17 @@ export default function TrackingPage() {
             </div>
             <button
               onClick={sendToWhatsApp}
-              className="w-full py-5 bg-red-600 text-white rounded-2xl font-bold text-[10px] uppercase tracking-widest flex items-center justify-center gap-2 hover:bg-red-700"
+              className="w-full py-5 bg-amber-600 text-white rounded-2xl font-bold text-[10px] uppercase tracking-widest flex items-center justify-center gap-2 hover:bg-red-700"
             >
               <MessageCircle className="w-4 h-4" /> Kirim Laporan ke Tenaga
               Kesehatan
             </button>
+            <Link
+              href="/"
+              className="block text-center py-2 text-[10px] font-black text-amber-400 hover:text-amber-950 uppercase tracking-[0.2em] transition-colors"
+            >
+              Kembali ke Beranda
+            </Link>
           </div>
         )}
 

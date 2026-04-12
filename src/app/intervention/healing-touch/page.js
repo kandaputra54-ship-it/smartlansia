@@ -12,6 +12,7 @@ import {
   Target,
   ClipboardCheck,
 } from "lucide-react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import {
   RadialBarChart,
@@ -34,6 +35,7 @@ export default function HealingTouchPage() {
     "Komunikasi pasangan meningkat",
     "Keintiman meningkat",
     "Kebutuhan seksualitas terpenuhi",
+    "Tidak ada perubahan ",
   ];
 
   const handleIdentity = (e) => {
@@ -57,27 +59,31 @@ export default function HealingTouchPage() {
 
   const getStatus = () => {
     if (totalYa <= 2) return { label: "Tahap Awal", color: "text-red-600" };
-    if (totalYa <= 4) return { label: "Peningkatan Baik", color: "text-orange-600" };
+    if (totalYa <= 4)
+      return { label: "Peningkatan Baik", color: "text-orange-600" };
     return { label: "Sangat Harmonis", color: "text-green-600" };
   };
 
- const sendToWhatsApp = () => {
-  let message = `*LAPORAN EVALUASI HEALING TOUCH*\n\n`;
-  message += `*PROFIL RESPONDEN*\n`;
-  message += `Nama: ${identity.name}\n`;
-  message += `Usia: ${identity.age} Tahun\n`;
-  message += `Gender: ${identity.gender}\n\n`;
-  message += `*HASIL EVALUASI*\n`;
+  const sendToWhatsApp = () => {
+    let message = `*LAPORAN EVALUASI HEALING TOUCH*\n\n`;
+    message += `*PROFIL RESPONDEN*\n`;
+    message += `Nama: ${identity.name}\n`;
+    message += `Usia: ${identity.age} Tahun\n`;
+    message += `Gender: ${identity.gender}\n\n`;
+    message += `*HASIL EVALUASI*\n`;
 
-  indicators.forEach((ind, i) => {
-    // Mengganti emoji dengan teks Ya atau Tidak
-    const status = results[i] === "Ya" ? "Ya" : "Tidak";
-    message += `• ${ind}: ${status}\n`;
-  });
+    indicators.forEach((ind, i) => {
+      // Mengganti emoji dengan teks Ya atau Tidak
+      const status = results[i] === "Ya" ? "Ya" : "Tidak";
+      message += `• ${ind}: ${status}\n`;
+    });
 
-  message += `\n*KESIMPULAN:* ${getStatus().label.toUpperCase()}`;
-  window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, "_blank");
-};
+    message += `\n*KESIMPULAN:* ${getStatus().label.toUpperCase()}`;
+    window.open(
+      `https://wa.me/${phone}?text=${encodeURIComponent(message)}`,
+      "_blank",
+    );
+  };
 
   return (
     <div className="min-h-screen bg-neutral-50 py-12 px-6 font-sans">
@@ -93,12 +99,16 @@ export default function HealingTouchPage() {
         {step === "identity" && (
           <div className="bg-white rounded-3xl shadow-xl border border-neutral-100 p-10 animate-in fade-in slide-in-from-bottom-4 duration-700">
             <div className="flex items-center gap-4 mb-10">
-              <div className="p-3 bg-neutral-900 rounded-2xl">
+              <div className="p-3 bg-amber-700 rounded-2xl">
                 <User className="w-6 h-6 text-white" />
               </div>
               <div>
-                <h2 className="text-xl font-bold text-neutral-900 tracking-tight">Profil Responden</h2>
-                <p className="text-[10px] text-neutral-400 uppercase tracking-widest font-bold mt-1">Langkah 01/03</p>
+                <h2 className="text-xl font-bold text-neutral-900 tracking-tight">
+                  Profil Responden
+                </h2>
+                <p className="text-[10px] text-neutral-400 uppercase tracking-widest font-bold mt-1">
+                  Langkah 01/03
+                </p>
               </div>
             </div>
             <div className="space-y-6">
@@ -134,7 +144,7 @@ export default function HealingTouchPage() {
             <button
               disabled={!identity.name || !identity.age || !identity.gender}
               onClick={() => setStep("material")}
-              className="w-full mt-10 py-5 bg-black text-white rounded-2xl font-bold hover:bg-neutral-800 disabled:bg-neutral-100 transition-all flex items-center justify-center gap-2"
+              className="w-full mt-10 py-5 bg-amber-600 text-white rounded-2xl font-bold hover:bg-amber-700 disabled:bg-neutral-100 transition-all flex items-center justify-center gap-2"
             >
               Lanjut ke Materi <ChevronRight className="w-4 h-4" />
             </button>
@@ -149,10 +159,14 @@ export default function HealingTouchPage() {
                 <div className="w-16 h-16 bg-black rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-xl">
                   <BookOpen className="w-8 h-8 text-white" />
                 </div>
-                <h2 className="text-2xl font-black text-neutral-900 tracking-tight uppercase">Materi Terapi</h2>
+                <h2 className="text-2xl font-black text-neutral-900 tracking-tight uppercase">
+                  Materi Terapi
+                </h2>
                 <div className="flex items-center justify-center gap-2 mt-2">
                   <span className="h-[2px] w-8 bg-red-600"></span>
-                  <p className="text-[10px] text-neutral-400 uppercase tracking-[0.2em] font-bold">Langkah 02/03</p>
+                  <p className="text-[10px] text-neutral-400 uppercase tracking-[0.2em] font-bold">
+                    Langkah 02/03
+                  </p>
                   <span className="h-[2px] w-8 bg-red-600"></span>
                 </div>
               </div>
@@ -166,15 +180,21 @@ export default function HealingTouchPage() {
                   <FileText className="w-10 h-10 text-red-600" />
                 </div>
                 <div className="text-center">
-                  <span className="block text-[10px] font-black uppercase tracking-[0.2em] text-neutral-400 group-hover:text-red-600 transition-colors">Modul Edukasi</span>
-                  <span className="block text-sm font-black text-neutral-900 mt-1">Buka Panduan Healing Touch</span>
+                  <span className="block text-[10px] font-black uppercase tracking-[0.2em] text-neutral-400 group-hover:text-red-600 transition-colors">
+                    Modul Edukasi
+                  </span>
+                  <span className="block text-sm font-black text-neutral-900 mt-1">
+                    Buka Panduan Healing Touch
+                  </span>
                 </div>
               </button>
 
               <div className="space-y-6">
                 <div className="flex items-center gap-3">
                   <Target className="w-5 h-5 text-red-600" />
-                  <h3 className="text-sm font-black uppercase tracking-widest text-neutral-900">Prosedur Utama</h3>
+                  <h3 className="text-sm font-black uppercase tracking-widest text-neutral-900">
+                    Prosedur Utama
+                  </h3>
                 </div>
                 <div className="grid gap-3">
                   {[
@@ -183,9 +203,16 @@ export default function HealingTouchPage() {
                     "Saling menatap mata dengan napas teratur",
                     "Ungkapkan perasaan positif (5-10 menit)",
                   ].map((text, i) => (
-                    <div key={i} className="flex gap-4 items-center p-4 bg-neutral-50 rounded-2xl border border-transparent hover:border-neutral-200 transition-all">
-                      <span className="flex-shrink-0 w-8 h-8 rounded-xl bg-black text-white flex items-center justify-center text-[10px] font-black shadow-lg">0{i + 1}</span>
-                      <p className="text-xs font-bold text-neutral-700">{text}</p>
+                    <div
+                      key={i}
+                      className="flex gap-4 items-center p-4 bg-neutral-50 rounded-2xl border border-transparent hover:border-neutral-200 transition-all"
+                    >
+                      <span className="flex-shrink-0 w-8 h-8 rounded-xl bg-black text-white flex items-center justify-center text-[10px] font-black shadow-lg">
+                        0{i + 1}
+                      </span>
+                      <p className="text-xs font-bold text-neutral-700">
+                        {text}
+                      </p>
                     </div>
                   ))}
                 </div>
@@ -193,7 +220,7 @@ export default function HealingTouchPage() {
 
               <button
                 onClick={() => setStep("questions")}
-                className="w-full mt-10 py-6 bg-black text-white rounded-2xl font-black text-xs uppercase tracking-[0.2em] hover:bg-red-600 transition-all duration-300 flex items-center justify-center gap-3 shadow-xl"
+                className="w-full mt-10 py-6 bg-amber-600 text-white rounded-2xl font-black text-xs uppercase tracking-[0.2em] hover:bg-amber-700 transition-all duration-300 flex items-center justify-center gap-3 shadow-xl"
               >
                 Mulai Evaluasi <ChevronRight className="w-5 h-5" />
               </button>
@@ -205,18 +232,27 @@ export default function HealingTouchPage() {
         {step === "questions" && (
           <div className="bg-white rounded-3xl shadow-xl border border-neutral-100 p-10 animate-in fade-in slide-in-from-right-4 duration-500">
             <div className="flex items-center gap-4 mb-10">
-              <div className="p-3 bg-neutral-900 rounded-2xl">
+              <div className="p-3 bg-amber-700 rounded-2xl">
                 <ClipboardCheck className="w-6 h-6 text-white" />
               </div>
               <div>
-                <h2 className="text-xl font-bold text-neutral-900 uppercase tracking-tight">Evaluasi Terapi</h2>
-                <p className="text-[10px] text-neutral-400 uppercase tracking-widest font-bold mt-1">Langkah 03/03</p>
+                <h2 className="text-xl font-bold text-neutral-900 uppercase tracking-tight">
+                  Evaluasi Terapi
+                </h2>
+                <p className="text-[10px] text-neutral-400 uppercase tracking-widest font-bold mt-1">
+                  Langkah 03/03
+                </p>
               </div>
             </div>
             <div className="space-y-6">
               {indicators.map((ind, i) => (
-                <div key={i} className="pb-6 border-b border-neutral-50 last:border-0">
-                  <p className="text-sm font-bold text-neutral-700 mb-4">{i + 1}. {ind}?</p>
+                <div
+                  key={i}
+                  className="pb-6 border-b border-neutral-50 last:border-0"
+                >
+                  <p className="text-sm font-bold text-neutral-700 mb-4">
+                    {i + 1}. {ind}?
+                  </p>
                   <div className="flex gap-3">
                     {["Ya", "Tidak"].map((opt) => (
                       <button
@@ -234,7 +270,7 @@ export default function HealingTouchPage() {
             <button
               disabled={!isTrackingComplete}
               onClick={() => setStep("results")}
-              className="w-full mt-10 py-5 bg-black text-white rounded-2xl font-bold hover:bg-neutral-800 disabled:bg-neutral-100 transition-all shadow-lg"
+              className="w-full mt-10 py-5 bg-amber-600 text-white rounded-2xl font-bold hover:bg-amber-700 disabled:bg-neutral-100 transition-all shadow-lg"
             >
               Lihat Hasil Akhir
             </button>
@@ -245,7 +281,7 @@ export default function HealingTouchPage() {
         {step === "results" && (
           <div className="animate-in fade-in zoom-in-95 duration-500 space-y-6">
             <div className="bg-white rounded-3xl border border-neutral-100 shadow-lg overflow-hidden text-center">
-              <div className="bg-neutral-900 pt-10 pb-8 px-8 flex flex-col items-center gap-5">
+              <div className="bg-amber-700 pt-10 pb-8 px-8 flex flex-col items-center gap-5">
                 <div className="w-40 h-40 relative">
                   <ResponsiveContainer width="100%" height="100%">
                     <RadialBarChart
@@ -258,31 +294,63 @@ export default function HealingTouchPage() {
                       startAngle={90}
                       endAngle={-270}
                     >
-                      <PolarAngleAxis type="number" domain={[0, 100]} tick={false} />
-                      <RadialBar background={{ fill: "#333" }} dataKey="value" cornerRadius={10} fill="#ef4444" />
+                      <PolarAngleAxis
+                        type="number"
+                        domain={[0, 100]}
+                        tick={false}
+                      />
+                      <RadialBar
+                        background={{ fill: "#333" }}
+                        dataKey="value"
+                        cornerRadius={10}
+                        fill="#358e05"
+                      />
                     </RadialBarChart>
                   </ResponsiveContainer>
                   <div className="absolute inset-0 flex items-center justify-center text-4xl font-bold text-white">
                     {totalYa}/{indicators.length}
                   </div>
                 </div>
-                <h2 className="text-2xl font-bold text-white tracking-tight uppercase">{getStatus().label}</h2>
+                <h2 className="text-2xl font-bold text-white tracking-tight uppercase">
+                  {getStatus().label}
+                </h2>
               </div>
               <div className="p-8 space-y-3">
                 {indicators.map((ind, i) => (
-                  <div key={i} className="flex items-center gap-3 text-sm text-left">
-                    {results[i] === "Ya" ? <Check className="w-4 h-4 text-green-500" /> : <X className="w-4 h-4 text-neutral-300" />}
-                    <span className={results[i] === "Ya" ? "text-neutral-900 font-medium" : "text-neutral-400"}>{ind}</span>
+                  <div
+                    key={i}
+                    className="flex items-center gap-3 text-sm text-left"
+                  >
+                    {results[i] === "Ya" ? (
+                      <Check className="w-4 h-4 text-green-500" />
+                    ) : (
+                      <X className="w-4 h-4 text-neutral-300" />
+                    )}
+                    <span
+                      className={
+                        results[i] === "Ya"
+                          ? "text-neutral-900 font-medium"
+                          : "text-neutral-400"
+                      }
+                    >
+                      {ind}
+                    </span>
                   </div>
                 ))}
               </div>
             </div>
             <button
               onClick={sendToWhatsApp}
-              className="w-full py-5 bg-red-600 text-white rounded-2xl font-bold text-[10px] uppercase tracking-widest flex items-center justify-center gap-2 hover:bg-red-700 shadow-xl"
+              className="w-full py-5 bg-amber-600 text-white rounded-2xl font-bold text-[10px] uppercase tracking-widest flex items-center justify-center gap-2 hover:bg-amber-700 shadow-xl"
             >
               <MessageCircle className="w-4 h-4" /> Kirim Laporan ke Ners
             </button>
+            <Link
+              href="/"
+              className="block text-center py-2 text-[10px] font-black text-amber-400 hover:text-amber-950 uppercase tracking-[0.2em] transition-colors"
+            >
+              Kembali ke Beranda
+            </Link>
           </div>
         )}
 
