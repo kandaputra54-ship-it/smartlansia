@@ -21,7 +21,7 @@ export default function Screening() {
           }}
         >
           {/* Overlay Gelap Gelap agar teks terbaca jelas, kurangi aksen hijau */}
-          <div className="absolute inset-0 bg-gradient-to-r from-black/95 via-black/80 to-black/60 z-0"></div>
+         
 
           <div className="relative z-10 flex flex-col md:flex-row items-center gap-12 p-10 md:p-20">
             {/* Sisi Kiri: Konten */}
