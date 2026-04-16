@@ -5,16 +5,20 @@ import {
   Check,
   Heart,
   User,
-  ArrowRight,
   Activity,
   MessageCircle,
   Star,
   Save,
-  Smile,
   AlertCircle,
 } from "lucide-react";
 import Link from "next/link";
-import { RadialBarChart, RadialBar, ResponsiveContainer, PolarAngleAxis } from "recharts";
+import {
+  RadialBarChart,
+  RadialBar,
+  ResponsiveContainer,
+  PolarAngleAxis,
+} from "recharts";
+import ReminiscenceQuiz from "@/components/ReminiscenceQuiz";
 
 export default function InterventionPage() {
   const [step, setStep] = useState("consent");
@@ -160,10 +164,10 @@ export default function InterventionPage() {
             <strong> Seluruh data bersifat rahasia dan tidak dibagikan.</strong>
           </p>
           <button
-            onClick={() => setStep("identity")}
-            className="w-full py-5 bg-amber-600 text-white rounded-2xl font-bold hover:bg-amber-700 transition-colors flex items-center justify-center gap-3 shadow-md"
+            onClick={() => setStep("quiz")} // Lari ke quiz dulu
+            className="..."
           >
-            Mulai Sesi Terapi 
+            Mulai Sesi Terapi
           </button>
           <Link
             href="/"
@@ -171,6 +175,17 @@ export default function InterventionPage() {
           >
             Batal
           </Link>
+        </div>
+      </div>
+    );
+  }
+
+  // 3. Tambah kondisi render untuk Quiz
+  if (step === "quiz") {
+    return (
+      <div className="min-h-screen bg-neutral-50 flex items-center justify-center p-6">
+        <div className="max-w-xl w-full">
+           <ReminiscenceQuiz onComplete={() => setStep("identity")} />
         </div>
       </div>
     );
@@ -383,7 +398,7 @@ export default function InterventionPage() {
                 )}
                 {isFormBComplete && (
                   <span className="text-[10px] font-black text-green-400 uppercase tracking-widest">
-                     Lengkap
+                    Lengkap
                   </span>
                 )}
                 <Activity className="w-5 h-5 text-red-500" />
@@ -551,7 +566,8 @@ export default function InterventionPage() {
                         dataKey="value"
                         cornerRadius={10}
                         fill="#358e05"
-                      />Evaluasi Terapi
+                      />
+                      Evaluasi Terapi
                     </RadialBarChart>
                   </ResponsiveContainer>
                   <div className="absolute inset-0 flex items-center justify-center text-4xl font-bold text-white">

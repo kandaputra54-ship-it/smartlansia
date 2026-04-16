@@ -1,30 +1,15 @@
 "use client";
 import React, { useState } from "react";
-import {
-  ArrowLeft,
-  MessageCircle,
-  BookOpen,
-  User,
-  Check,
-  ChevronRight,
-  X,
-  FileText,
-  Target,
-  ClipboardCheck,
-} from "lucide-react";
+import { ArrowLeft, MessageCircle, BookOpen, User, Check, ChevronRight, X, FileText, Target, ClipboardCheck, } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import {
-  RadialBarChart,
-  RadialBar,
-  PolarAngleAxis,
-  ResponsiveContainer,
-} from "recharts";
+import { RadialBarChart, RadialBar, PolarAngleAxis, ResponsiveContainer, } from "recharts";
 import PdfViewer from "@/components/PdfViewer";
+import HealingTouchQuiz from "@/components/HealingTouchQuiz";
 
 export default function HealingTouchPage() {
   const router = useRouter();
-  const [step, setStep] = useState("identity");
+  const [step, setStep] = useState("quiz");
   const [identity, setIdentity] = useState({ name: "", age: "", gender: "" });
   const [results, setResults] = useState({});
   const [isPdfOpen, setIsPdfOpen] = useState(false);
@@ -94,6 +79,13 @@ export default function HealingTouchPage() {
         >
           <ArrowLeft className="w-4 h-4" /> Kembali
         </button>
+
+        {/* --- STEP 0: QUIZ (PRE/POST) --- */}
+        {step === "quiz" && (
+          <div className="animate-in fade-in duration-700">
+             <HealingTouchQuiz onComplete={() => setStep("identity")} />
+          </div>
+        )}
 
         {/* STEP 1: IDENTITY */}
         {step === "identity" && (

@@ -1,31 +1,12 @@
 "use client";
 import React, { useState } from "react";
-import {
-  ChevronRight,
-  ChevronLeft,
-  MessageSquare,
-  MessageCircle,
-  Heart,
-  ArrowLeft,
-  Users,
-  Smile,
-  Mic,
-  Ear,
-  CheckCircle2,
-  ClipboardCheck,
-  Check,
-  X,
-} from "lucide-react";
+import { ChevronRight, MessageSquare, MessageCircle, ArrowLeft, Users, Smile, Mic, Ear, CheckCircle2, ClipboardCheck, Check, X, } from "lucide-react";
 import Link from "next/link";
-import {
-  RadialBarChart,
-  RadialBar,
-  ResponsiveContainer,
-  PolarAngleAxis,
-} from "recharts";
+import { RadialBarChart, RadialBar, ResponsiveContainer, PolarAngleAxis, } from "recharts";
+import CommunicationQuiz from "@/components/CommunicationQuiz";
 
 export default function CommunicationPage() {
-  const [step, setStep] = useState("materi"); // materi, questions, results
+  const [step, setStep] = useState("quiz"); 
   const [results, setResults] = useState({});
 
   const phone = "6285717494954";
@@ -84,6 +65,13 @@ export default function CommunicationPage() {
       </div>
 
       <div className="max-w-3xl mx-auto px-4 sm:px-6 mt-8">
+
+        {/* STEP 0: QUIZ */}
+        {step === "quiz" && (
+           <div className="animate-in fade-in duration-500">
+             <CommunicationQuiz onComplete={() => setStep("materi")} />
+           </div>
+        )}
         {/* STEP 1 & 2: MATERI (Disederhanakan dalam satu view materi) */}
         {step === "materi" && (
           <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
