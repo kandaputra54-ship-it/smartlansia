@@ -1,11 +1,29 @@
 "use client";
 import React, { useState } from "react";
-import { ArrowLeft, MessageCircle, BookOpen, User, Check, ChevronRight, X, FileText, Target, ClipboardCheck, } from "lucide-react";
+import {
+  ArrowLeft,
+  MessageCircle,
+  BookOpen,
+  User,
+  Check,
+  ChevronRight,
+  X,
+  FileText,
+  Target,
+  ClipboardCheck,
+  Play,
+} from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { RadialBarChart, RadialBar, PolarAngleAxis, ResponsiveContainer, } from "recharts";
+import {
+  RadialBarChart,
+  RadialBar,
+  PolarAngleAxis,
+  ResponsiveContainer,
+} from "recharts";
 import PdfViewer from "@/components/PdfViewer";
 import HealingTouchQuiz from "@/components/HealingTouchQuiz";
+import VideoViewer from "@/components/VideoViewer";
 
 export default function HealingTouchPage() {
   const router = useRouter();
@@ -14,6 +32,9 @@ export default function HealingTouchPage() {
   const [results, setResults] = useState({});
   const [isPdfOpen, setIsPdfOpen] = useState(false);
   const phone = "6285717494954";
+  const [isVideoOpen, setIsVideoOpen] = useState(false);
+  const videoUrl =
+    "https://drive.google.com/file/d/1-RzKMA8TSgVo1txVfcb0AGddDmRqWhjC/view?usp=sharing";
 
   const indicators = [
     "Kedekatan emosional meningkat",
@@ -83,7 +104,7 @@ export default function HealingTouchPage() {
         {/* --- STEP 0: QUIZ (PRE/POST) --- */}
         {step === "quiz" && (
           <div className="animate-in fade-in duration-700">
-             <HealingTouchQuiz onComplete={() => setStep("identity")} />
+            <HealingTouchQuiz onComplete={() => setStep("identity")} />
           </div>
         )}
 
@@ -163,23 +184,43 @@ export default function HealingTouchPage() {
                 </div>
               </div>
 
-              {/* SINGLE PDF SELECTOR - FULL WIDTH */}
-              <button
-                onClick={() => setIsPdfOpen(true)}
-                className="w-full group relative overflow-hidden flex flex-col items-center gap-4 p-10 bg-neutral-50 border border-neutral-100 rounded-[2rem] hover:border-red-600 transition-all duration-300 mb-10"
-              >
-                <div className="p-5 bg-white rounded-2xl shadow-sm group-hover:scale-110 transition-transform duration-300">
-                  <FileText className="w-10 h-10 text-red-600" />
-                </div>
-                <div className="text-center">
-                  <span className="block text-[10px] font-black uppercase tracking-[0.2em] text-neutral-400 group-hover:text-red-600 transition-colors">
-                    Modul Edukasi
-                  </span>
-                  <span className="block text-sm font-black text-neutral-900 mt-1">
-                    Buka Panduan Healing Touch
-                  </span>
-                </div>
-              </button>
+              <div className="grid grid-cols-2 gap-4 mb-10">
+                {/* Tombol PDF */}
+                <button
+                  onClick={() => setIsPdfOpen(true)}
+                  className="group flex flex-col items-center gap-4 p-8 bg-neutral-50 border border-neutral-100 rounded-[2rem] hover:border-red-600 transition-all duration-300"
+                >
+                  <div className="p-4 bg-white rounded-2xl shadow-sm group-hover:scale-110 transition-transform duration-300">
+                    <FileText className="w-8 h-8 text-red-600" />
+                  </div>
+                  <div className="text-center">
+                    <span className="block text-[10px] font-black uppercase tracking-widest text-neutral-400 group-hover:text-red-600">
+                      Modul Edukasi
+                    </span>
+                    <span className="block text-xs font-black text-neutral-900 mt-1">
+                      Buka Panduan
+                    </span>
+                  </div>
+                </button>
+
+                {/* Tombol Video */}
+                <button
+                  onClick={() => setIsVideoOpen(true)}
+                  className="group flex flex-col items-center gap-4 p-8 bg-neutral-50 border border-neutral-100 rounded-[2rem] hover:border-amber-600 transition-all duration-300"
+                >
+                  <div className="p-4 bg-white rounded-2xl shadow-sm group-hover:scale-110 transition-transform duration-300">
+                    <Play className="w-8 h-8 text-amber-600" />
+                  </div>
+                  <div className="text-center">
+                    <span className="block text-[10px] font-black uppercase tracking-widest text-neutral-400 group-hover:text-amber-600">
+                      Video Terapi
+                    </span>
+                    <span className="block text-xs font-black text-neutral-900 mt-1">
+                      Putar Video
+                    </span>
+                  </div>
+                </button>
+              </div>
 
               <div className="space-y-6">
                 <div className="flex items-center gap-3">
@@ -351,6 +392,13 @@ export default function HealingTouchPage() {
           onClose={() => setIsPdfOpen(false)}
           pdfUrl="https://drive.google.com/file/d/17trVPm3EP4FS4rH67VHsmqK6L4VRwP_t/preview"
           title="Modul Healing Touch"
+        />
+
+        <VideoViewer
+          isOpen={isVideoOpen}
+          onClose={() => setIsVideoOpen(false)}
+          videoUrl={videoUrl}
+          title="Video Panduan Healing Touch"
         />
       </div>
     </div>
