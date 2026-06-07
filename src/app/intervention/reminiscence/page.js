@@ -618,7 +618,7 @@ export default function InterventionPage() {
               href="/"
               className="block text-center text-[10px] font-bold text-neutral-400 uppercase tracking-widest hover:text-neutral-900"
             >
-              Kembali ke Dashboard
+              Kembali ke Beranda Utama
             </Link>
           </div>
         )}

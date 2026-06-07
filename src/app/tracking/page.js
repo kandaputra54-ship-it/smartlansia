@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { ArrowLeft,  MessageCircle, LineChart,  User, Check, ChevronRight, X} from "lucide-react";
 import { useRouter } from "next/navigation";
 import { RadialBarChart, RadialBar, PolarAngleAxis, ResponsiveContainer, } from "recharts";
+import Link from "next/link";
 
 export default function TrackingPage() {
   const router = useRouter();
@@ -336,6 +337,7 @@ export default function TrackingPage() {
             </div>
 
             {/* Action Buttons */}
+          {/* Action Buttons */}
             <div className="space-y-3">
               <button
                 onClick={sendToWhatsApp}
@@ -344,12 +346,36 @@ export default function TrackingPage() {
                 <MessageCircle className="w-4 h-4" />
                 Kirim ke Tenaga Kesehatan
               </button>
+
               <button
                 onClick={() => setStep("identity")}
                 className="w-full py-4 text-neutral-400 font-bold text-[10px] uppercase tracking-widest hover:text-neutral-900 transition-colors border border-neutral-200 rounded-2xl"
               >
                 Lakukan Pengisian Ulang
               </button>
+
+              {/* ── Tombol Kembali ke Beranda Utama ── */}
+              <Link
+                href="/"
+                className="w-full py-4 bg-white border border-neutral-200 text-neutral-500 hover:text-neutral-900 font-bold text-[10px] uppercase tracking-widest transition-all flex items-center justify-center gap-2 rounded-2xl shadow-sm hover:shadow active:scale-[0.98]"
+              >
+                {/* Menggunakan struktur arrow bawaan agar senada */}
+                <svg
+                  className="w-3.5 h-3.5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2.5}
+                    d="M10 19l-7-7m0 0l7-7m-7 7h18"
+                  />
+                </svg>
+                Kembali ke Beranda Utama
+              </Link>
             </div>
           </div>
         )}
