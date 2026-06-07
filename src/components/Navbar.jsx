@@ -6,7 +6,7 @@ import Link from "next/link";
 const navLinks = [
   { letter: "S", word: "Screening",           label: "Screening",      href: "#screening",   icon: ShieldCheck },
   { letter: "M", word: "Mobile Intervention", label: "Mobile",         href: "#intervensi",  icon: Smartphone  },
-  { letter: "A", word: "App Counseling",      label: "App Counseling", href: "#konseling",   icon: Headphones  },
+  { letter: "A", word: "App Counseling",      label: "App Counseling", href: "#beranda",   icon: Headphones  },
   { letter: "R", word: "Remote TeleNursing",  label: "Remote Nursing", href: "#telenursing", icon: Wifi        },
   { letter: "T", word: "Tracking",            label: "Tracking",       href: "#tracking",    icon: BarChart2   },
 ];

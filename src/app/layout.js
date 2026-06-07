@@ -7,7 +7,7 @@ export const metadata = {
   
 
   keywords: ["kesehatan lansia", "screening mandiri", "telenursing Indonesia", "perawatan lansia", "cek kesehatan digital"],
-  authors: [{ name: "SMARTLANSIA Team" }],
+  authors: [{ name: "Ns. Heri Setiawan, S.Kep.,M.Kep" }],
   creator: "SMARTLANSIA",
   
   // 3. Open Graph (Untuk tampilan saat dibagikan di WhatsApp/Media Sosial)
