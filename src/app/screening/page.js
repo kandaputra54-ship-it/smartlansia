@@ -451,7 +451,7 @@ export default function ScreeningPage() {
   const waMessage = buildWhatsAppMessage(identity, answers, score, result);
   const waLink = `https://wa.me/6285717494954?text=${waMessage}`;
 
-  return (
+return (
     <div className="min-h-screen bg-neutral-50 py-16 px-6">
       <div className="max-w-lg mx-auto space-y-6">
         {/* ── Result Card ── */}
@@ -544,6 +544,31 @@ export default function ScreeningPage() {
             ))}
           </div>
         </div>
+
+        {/* ── Tombol Kembali ke Beranda (Di Bawah) ── */}
+        <div className="pt-2">
+          <Link
+            href="/"
+            className="w-full py-4 bg-white border border-neutral-200 text-neutral-500 hover:text-neutral-900 rounded-2xl font-bold transition-all flex items-center justify-center gap-2 shadow-sm hover:shadow-md text-sm"
+          >
+            <svg
+              className="w-4 h-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2.5}
+                d="M10 19l-7-7m0 0l7-7m-7 7h18"
+              />
+            </svg>
+            Kembali ke Beranda Utama
+          </Link>
+        </div>
+
       </div>
     </div>
   );
